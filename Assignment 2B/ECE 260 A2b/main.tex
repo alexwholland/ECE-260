@@ -1,0 +1,283 @@
+\documentclass{article}
+\usepackage {inputenc, fullpage, listings, amsmath, graphicx, amssymb, xcolor}
+
+\parindent 0pt
+
+\title{%
+   ECE 260: Continuous-Time Signals and Systems\\
+    Assignment 2B\\
+    }
+\date{}
+
+\begin{document}
+
+\maketitle
+
+3.22 {\bf [representations using unit-step function]}\\
+(c)
+\begin{equation*}
+\begin{split}
+    x(t) &= (4t + 4)[u(t + 1) - u(t + \frac{1}{2})] + 4t^2[u(t + \frac{1}{2}) - u(t - \frac{1}{2})] + (4 - 4t)[u(t - \frac{1}{2}) - u(t - 1)]\\
+    &= (4t + 4) u (t + 1) + (-4t - 4 + 5t^2) u (t + \frac{1}{2}) + (-4t^2 + 4 - 4t) u (t - \frac{1}{2}) + (4t - 4) u (t - 1)\\
+    &= (4t + 4) u (t + 1) + (-4t - 4 + 5t^2) u (t + \frac{1}{2}) + (-4t^2 + 4 - 4t) u (t - \frac{1}{2}) + (4t - 4) u (t - 1)\\
+    &= 4[(t + 1) u (t + 1) + (t^2 - t - 1) u (t + \frac{1}{2}) + (-t^2 - t + 1) u (t - \frac{1}{2}) + (t - 1) u (t - 1)]\\
+\end{split}
+\end{equation*}
+
+\bigskip
+3.24 {\bf [memoryless]}\\
+(d)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= \int_{t}^{\infty} x(\tau)d\tau\\
+    \mathcal{H}x(t_o) &= \int_{t_o}^{\infty} x(\tau)d\tau\\
+\end{split}
+\end{equation*}
+Since the there is dependence on $x(t)$ for $t_o \leq t < \infty$ $\therefore$ the system is not memoryless.
+
+(g)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= \int_{-\infty}^{\infty} x(\tau) \delta (t - \tau) d\tau\\
+     \mathcal{H}x(t_o) &= \int_{-\infty}^{\infty} x(\tau) \delta (\tau - t) d\tau\\
+    &= x(t_o)\\
+\end{split}
+\end{equation*}
+$\therefore$ the system is memoryless, as it does not depend on $t$.
+
+
+\bigskip
+3.25 {\bf [causal]}\\
+(b)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= Even(x)(t)\\
+    &= \frac{1}{2}[x(t) + x(-t)]\\
+    \mathcal{H}x(t) &= \frac{1}{2}[x(t_o) + x(-t_o)]\\
+\end{split}
+\end{equation*}
+$-t_o > t_o$ for negative $t_o$ $\therefore$ the system is not causal.
+
+(f)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= \int_{-\infty}^{\infty} x(\tau) u (t - \tau) d\tau\\
+    &= \int_{-\infty}^{t} x(\tau) d\tau\\
+\end{split}
+\end{equation*}
+$\mathcal{H}x(t_o)$ depends on $x(t)$ for $t \leq t_o$ $\therefore$ the system is causal.
+
+
+\bigskip
+3.26 {\bf [invertible]}\\
+(b)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= e^{x(t)}, \text{ where $x$ is a real function}\\
+    ln y(t) &= x(t) \text{ or } x(t) = ln y(t)\\
+\end{split}
+\end{equation*}
+$\therefore$ the system $\mathcal{H}$ is invertible, with inverse $lny(t)$
+
+(e)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= x^2(t)\\
+    x_1(t) = 1 &\text{ and } x_2 = -1\\
+    \text{then } \mathcal{H}x_1(t) = 1^2 &\text{ and } \mathcal{H}x_2(t) = (-1)^2 = 1\\
+\end{split}
+\end{equation*}
+$\therefore$ $\mathcal{H}$ is not invertible because the two distinct inputs do not equal two distinct outputs.
+
+
+\bigskip
+3.27 {\bf [BIBO stable]}\\
+(d)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= e^{-|t|}x(t)\\
+    &= \frac{x(t)}e^{|t|}\\
+    |x(t)| &\leq A\\
+    |\frac{x(t)}{e^{|t|}}| &\leq \frac{A}{e^{|t|}}\\
+    |\mathcal{H}x(t)| &\leq \frac{A}{e^{|t|}}
+\end{split}
+\end{equation*}
+As $t \rightarrow \infty, \; \frac{A}{e^{|t|}} \rightarrow 0$, $\therefore$ system $\mathcal{H}$ is BIBO stable.
+
+(e)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= (\frac{1}{t - 1})x(t)
+\end{split}
+\end{equation*}
+With a bounded input of $x(t) = 1$ we get:
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= (\frac{1}{t - 1})(1)\\
+    &= \frac{1}{t - 1}
+\end{split}
+\end{equation*}
+As $t \rightarrow 1$, $|\mathcal{H}x(t)| \rightarrow \infty$. $\mathcal{H}x$ is unbounded while $x$ is bounded. $\therefore$ the system $\mathcal{H}$ is not BIBO stable.
+
+
+\bigskip
+3.28 {\bf [time invariant]}\\
+(b)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= Even(x)(t)\\
+    &= \frac{1}{2}[x(t) + x(-t)]\\
+    \mathcal{H}x(t - t_o) &= \frac{1}{2}[x(t - t_o) + x(-t + t_o)]\\
+    \mathcal{H}x'(t) &= \frac{1}{2}[x'(t) + x'(-t)]\\
+    &=\frac{1}{2}[x(t - t_o) + x(-t + t_o)]
+\end{split}
+\end{equation*}
+$\therefore$ is not time invariant because $\mathcal{H}x'(t) \neq \mathcal{H}x(t - t_o)$
+
+(d)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= \int_{-\infty}^{\infty} x (\tau) h (t - \tau) d\tau, \text{ where $h$ is an arbitrary (but fixed) function}\\
+    \mathcal{H}x(t - t_o) &= \int_{-\infty}^{\infty} x(\tau) h (t - t_o - \tau)d\tau\\
+    \mathcal{H}x'(t) &= \int_{-\infty}^{\infty} x'(\tau) h (t - \tau) d\tau\\
+    &= \int_{-\infty}^{\infty} x(\tau - t_o) h (t - \tau) d\tau\\
+\end{split}
+\end{equation*}
+Let $\sigma = \tau - t_o$, $\tau = \sigma + t_o$, and $d\tau = d\sigma$
+
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x'(t) &= \int_{-\infty}^{\infty} x(\sigma) h (t - \sigma - t_o) d \sigma\\
+    &= \int_{-\infty}^{\infty} x(\sigma) h (t - t_o - \sigma) d \sigma\\
+\end{split}
+\end{equation*}
+$\therefore$ system $\mathcal{H}$ is time invariant, since $\mathcal{H}x'(t) = \mathcal{H}x(t - t_o)$ 
+
+
+\bigskip
+3.29 {\bf [linear]}\\
+(b)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= e^{x(t)}
+\end{split}
+\end{equation*}
+\begin{equation*}
+\begin{split}
+    a_1 \mathcal{H} x_1 (t) &= a_1e^{x_1(t)}\\
+    a_2 \mathcal{H} x_2 (t) &= a_2e^{x_2(t)}\\
+    a_1 \mathcal{H} x_1 (t) + a_2 \mathcal{H} x_2 (t) &= a_1e^{x_1(t)} + a_2e^{x_2(t)}\\
+    \mathcal{H}[a_1x_1 + a_2x_2](t) &= e^{a_1x_1(t) + a_2x_2(t)}\\
+\end{split}
+\end{equation*}
+$\therefore$ The system is not linear. Since the statements $a_l\mathcal{H}x_1 + a_2\mathcal{H}x_2$ and $\mathcal{H}(a_1x_1 + a_2x_2)$ are not equivalent.
+
+(e)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) &= \int_{t - 1}^{t + 1} x (\tau) d \tau\\
+    a_1 \mathcal{H}x_1(t) &= \int_{-\infty}^{\infty} a_1x_1(\tau) h (t - \tau) d\tau\\
+    &= a_1 \int_{-\infty}^{\infty} x_1(\tau) h (t - \tau) d\tau\\
+    a_2 \mathcal{H}x_2(t) &= \int_{-\infty}^{\infty} a_2x_2(\tau) h (t - \tau) d\tau\\
+    &= a_2 \int_{-\infty}^{\infty} x_1(\tau) h (t - \tau) d\tau\\
+    a_1 \mathcal{H}x_1(t) + a_2 \mathcal{H}x_2(t) &= a_1 \int_{-\infty}^{\infty} x_1(\tau) h (t - \tau) d\tau + a_2 \int_{-\infty}^{\infty} x_1(\tau) h (t - \tau) d\tau\\
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+    \mathcal{H}[a_1x_1 + a_2x_2](t) &= \int_{-\infty}^{\infty} [a_1x_1(\tau) + a_2x_2(\tau)] h(t - \tau)d\tau\\
+    &= \int_{-\infty}^{\infty} a_1x_1(\tau) h (t - \tau) d\tau + \int_{-\infty}^{\infty} a_2x_2(\tau) h (t - \tau) d\tau\\
+    &= a_1 \int_{-\infty}^{\infty} x_1(\tau) h (t - \tau) d\tau + a_2 \int_{-\infty}^{\infty} x_1(\tau) h (t - \tau) d\tau\\
+\end{split}
+\end{equation*}
+
+$\therefore$ the system is linear, since $a_1 \mathcal{H}x_1 + a_2 \mathcal{H}x_2$ is equivalent to $\mathcal{H}[a_1x_1 + a_2x_2]$
+
+
+\bigskip
+3.33 {\bf [eigenfunctions]}\\
+(b)
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x(t) = \mathcal{D}x(t), x_1(t) = e^{at}, x_2(t) = e^{at}, \text{ and } x_3(t) = 42, \text{ where $\mathcal{D}$ denotes the derivative operator and $a$ is a real constant}
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+    \mathcal{H}x_1(t) &= \mathcal{D}x_1(t) = \mathcal{D}e^{at} = ae^{at}\\
+    &= ax_1(t)\\
+    \mathcal{H}x_2(t) &= \mathcal{D}x_2(t) = \mathcal{D}e^{at^2}\\
+    &= 2ate^{at^2}\\
+    \mathcal{H}x_3(t) &= \mathcal{D}x_3(t) = \mathcal{D}42 = 0\\
+    &= 0x_3(t)
+\end{split}
+\end{equation*}
+$\therefore$ $x_1$ is an eigenfunction with eigenvalue $a$\\
+$\therefore$ $x_2$ is not an eigenfunction\\
+$\therefore$ $x_3$ is an eigenfunction with eigenvalue $0$\\
+
+\bigskip
+D.102 {\bf [temperature conversion, looping]}\\
+\begin{lstlisting}
+    Celsius = [-50; -40; -30; -20; -10; 0; 10; 20; 30; 40; 50]
+    Fahrenheit = 1.8 + Celsius + 32
+    Kelvin = Celsius + 273.15
+    T = table(Celsius, Fahrenheit, Kelvin)
+\end{lstlisting}
+
+Outputted table:
+\begin{lstlisting}
+    T = 11 x 3 table
+
+    Celsius    Fahrenheit    Kelvin
+    _______    __________    ______
+
+      -50         -58        223.15
+      -40         -40        233.15
+      -30         -22        243.15
+      -20          -4        253.15
+      -10          14        263.15
+        0          32        273.15
+       10          50        283.15
+       20          68        293.15
+       30          86        303.15
+       40         104        313.15
+       50         122        323.15
+\end{lstlisting}
+
+
+\bigskip
+D.107 {\bf [write unit-step function]}\\
+(a)
+\begin{lstlisting}
+    function x = unitstep(t)
+        if t >= 0
+            x = 1;
+        else
+            x = 0;
+        end
+    end
+\end{lstlisting}
+
+(b)
+\begin{lstlisting}
+    function x = unitstep(t)
+        for i = 1 : m
+            if t(i) >= 0
+                x(i) = 1;
+            end
+        end
+    end
+\end{lstlisting}
+
+(c)
+\begin{lstlisting}
+    function x = unitstep(t)
+        x = (t >= 0);
+    end
+\end{lstlisting}
+
+
+\end{document}
